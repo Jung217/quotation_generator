@@ -6,7 +6,7 @@
     <title>估價單生成器</title>
     <style>
         body {
-            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif;
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
@@ -79,7 +79,7 @@
         }
         
         .item-input {
-            width: 100%;
+            width:50%;
             border: none;
             padding: 5px;
             text-align: center;
@@ -196,16 +196,16 @@
             <div class="company-title">估價單</div>
             <div>
                 <div class="form-group">
-                    <label>單位<span class="required">*</span>:</label>
+                    <label>單位:</label>
                     <input type="text" id="companyName" placeholder="請輸入公司/單位名稱" required>
                 </div>
                 <div class="form-group">
                     <label>統編:</label>
-                    <input type="text" id="taxId" placeholder="統一編號 (選填)">
+                    <input type="text" id="taxId" placeholder="請輸入統一編號">
                 </div>
                 <div class="form-group">
                     <label>工程名稱:</label>
-                    <input type="text" id="projectName" placeholder="工程專案名稱 (選填)">
+                    <input type="text" id="projectName" placeholder="請輸入工程專案名稱">
                 </div>
             </div>
         </div>
@@ -271,11 +271,11 @@
             newRow.innerHTML = `
                 <td>${rowCount}</td>
                 <td><input type="text" class="item-input" placeholder="品項名稱"></td>
-                <td><input type="number" class="item-input quantity" min="0" step="0.01" placeholder="0" onchange="calculateAmount(this)"></td>
+                <td><input type="number" class="item-input quantity" min="0" step="1" placeholder="0" onchange="calculateAmount(this)"></td>
                 <td><input type="text" class="item-input" placeholder="單位"></td>
-                <td><input type="number" class="item-input price" min="0" step="0.01" placeholder="0" onchange="calculateAmount(this)"></td>
+                <td><input type="number" class="item-input price" min="0" step="1" placeholder="0" onchange="calculateAmount(this)"></td>
                 <td class="amount">0</td>
-                <td><input type="text" class="item-input" placeholder="備註"></td>
+                <td><input type="text" class="item-input"></td>
             `;
         }
 
