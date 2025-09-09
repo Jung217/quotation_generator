@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>估價單生成器</title>
+    <style>
+        body {
+            font-family: 'DFKai-SB', '標楷體', 'BiauKai', serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+        }
+        
+        .company-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-group label {
+            width: 100px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .form-group input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .required {
+            color: red;
+        }
+        
+        .table-container {
+            margin: 30px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid #333;
+        }
+        
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        .item-input {
+            width:90%;
+            border: none;
+            padding: 5px;
+            text-align: center;
+        }
+        
+        .total-row {
+            background-color: #f8f8f8;
+            font-weight: bold;
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        
+        .btn-success {
+            background-color: #28a745;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        
+        .footer {
+            text-align: right;
+            margin-top: 30px;
+            font-size: 14px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+        
+        .company-info {
+            margin-top: 30px;
+            border: 2px solid #333;
+            padding: 20px;
+        }
+        
+        .company-row {
+            display: flex;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        
+        .company-label {
+            font-weight: bold;
+            width: 100px;
+            margin-right: 10px;
+        }
+        
+        .company-input {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        
+        .validity-info {
+            text-align: right;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .print-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #17a2b8;
+        }
+        
+        @media print {
+            .btn-container, .print-btn {
+                display: none;
+            }
+            
+            body {
+                background: white;
+            }
+            
+            .container {
+                box-shadow: none;
+                border: 1px solid #333;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="btn print-btn" onclick="window.print()">列印估價單</button>
+    
+    <div class="container">
+        <div class="header">
+            <div class="company-title">估價單</div>
+            <div>
+                <div class="form-group">
+                    <label>單位:</label>
+                    <input type="text" id="companyName" placeholder="請輸入公司/單位名稱" required>
+                </div>
+                <div class="form-group">
+                    <label>統編:</label>
+                    <input type="text" id="taxId" placeholder="請輸入統一編號">
+                </div>
+                <div class="form-group">
+                    <label>工程名稱:</label>
+                    <input type="text" id="projectName" placeholder="請輸入工程專案名稱">
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table id="quotationTable">
+                <thead>
+                    <tr>
+                        <th width="7%">項目</th>
+                        <th width="25%">品名</th>
+                        <th width="14%">數量</th>
+                        <th width="7%">單位</th>
+                        <th width="14%">單價</th>
+                        <th width="15%">金額</th>
+                        <th width="13%">備註</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- 動態產生的列 -->
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="5" style="text-align: right; font-weight: bold;">總計</td>
+                        <td id="totalAmount">0</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+        <div class="btn-container">
+            <button class="btn btn-success" onclick="addRow()">新增項目</button>
+            <button class="btn btn-danger" onclick="removeLastRow()">刪除項目</button>
+        </div>
+        
+        <div class="company-info">
+            <img style="float: right; height: 130px" src="seal.png"/>
+            乳山好店
+            <br><br>
+            統一編號：50729440
+            <br>
+            負責人：王明宗
+            <br>
+            聯絡電話：0932838537
+            <br>
+            公司地址：金門縣金寧鄉伯玉路 2 段 460 號
+            <br>
+            E-mail：a0932838537@gmail.com
+        </div>
+        
+        <div class="validity-info">
+            <div>本估價單30日內有效 製表日期：<span id="currentDate"></span></div>
+        </div>
+    </div>
+
+    <script>
+        let rowCount = 0;
+
+        function addRow() {
+            rowCount++;
+            const tbody = document.getElementById('tableBody');
+            const newRow = tbody.insertRow();
+            
+            newRow.innerHTML = `
+                <td>${rowCount}</td>
+                <td><input type="text" class="item-input" placeholder="品項名稱"></td>
+                <td><input type="number" class="item-input quantity" min="0" step="1" placeholder="0" onchange="calculateAmount(this)"></td>
+                <td><input type="text" class="item-input" placeholder="單位"></td>
+                <td><input type="number" class="item-input price" min="0" step="1" placeholder="0" onchange="calculateAmount(this)"></td>
+                <td class="amount">0</td>
+                <td><input type="text" class="item-input"></td>
+            `;
+        }
+
+        function removeLastRow() {
+            const tbody = document.getElementById('tableBody');
+            if (tbody.rows.length > 0) {
+                tbody.deleteRow(-1);
+                rowCount--;
+                updateRowNumbers();
+                calculateTotal();
+            }
+        }
+
+        function updateRowNumbers() {
+            const tbody = document.getElementById('tableBody');
+            for (let i = 0; i < tbody.rows.length; i++) {
+                tbody.rows[i].cells[0].textContent = i + 1;
+            }
+        }
+
+        function calculateAmount(input) {
+            const row = input.closest('tr');
+            const quantityInput = row.querySelector('.quantity');
+            const priceInput = row.querySelector('.price');
+            const amountCell = row.querySelector('.amount');
+            
+            const quantity = parseFloat(quantityInput.value) || 0;
+            const price = parseFloat(priceInput.value) || 0;
+            const amount = quantity * price;
+            
+            amountCell.textContent = amount.toLocaleString('zh-TW');
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const amountCells = document.querySelectorAll('.amount');
+            let total = 0;
+            
+            amountCells.forEach(cell => {
+                const amount = parseFloat(cell.textContent.replace(/,/g, '')) || 0;
+                total += amount;
+            });
+            
+            document.getElementById('totalAmount').textContent = total.toLocaleString('zh-TW');
+        }
+
+        function formatDate(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}/${month}/${day}`;
+        }
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 設定當前日期
+            const today = new Date();
+            document.getElementById('currentDate').textContent = formatDate(today);
+            
+            // 添加第一行
+            addRow();
+        });
+    </script>
+</body>
+</html>
