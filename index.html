@@ -98,30 +98,52 @@
         }
 
         .btn {
-            background-color: #007bff;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 24px;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 0 10px;
+            border-radius: 8px;
             font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 0 8px;
         }
 
         .btn:hover {
-            background-color: #0056b3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #004085;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #003366;
         }
 
         .btn-danger {
-            background-color: #dc3545;
+            background-color: #e63946;
+            color: white;
         }
 
         .btn-danger:hover {
-            background-color: #c82333;
+            background-color: #d62839;
         }
 
         .btn-success {
             background-color: #28a745;
+            color: white;
         }
 
         .btn-success:hover {
@@ -169,9 +191,19 @@
 
         .print-btn {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 25px;
+            right: 25px;
             background-color: #17a2b8;
+            color: white;
+            z-index: 1000;
+            padding: 12px 28px;
+            font-size: 15px;
+            box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+        }
+
+        .print-btn:hover {
+            background-color: #138496;
+            box-shadow: 0 6px 16px rgba(23, 162, 184, 0.4);
         }
 
         .settings-panel {
@@ -265,6 +297,168 @@
             font-weight: 300;
         }
 
+        .width-input {
+            width: 40px;
+            padding: 2px 4px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 11px;
+            margin-left: 0;
+            text-align: center;
+        }
+
+        .width-input:focus {
+            outline: none;
+            border-color: #004085;
+        }
+
+        .toggle-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .btn-mini {
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 6px;
+            background-color: #fff;
+            color: #444;
+            border: 1px solid #d1d5db;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-mini:hover {
+            background-color: #f9fafb;
+            border-color: #9ca3af;
+            color: #111;
+        }
+
+        .btn-mini-reset {
+            background-color: #f0f7ff;
+            color: #0056b3;
+            border-color: #cce5ff;
+        }
+
+        .btn-mini-reset:hover {
+            background-color: #0056b3;
+            color: #ffffff;
+            border-color: #004d99;
+        }
+
+        .btn-mini:active {
+            background-color: #f3f4f6;
+            transform: scale(0.98);
+        }
+
+        /* Multi-Slider Styles */
+        .multi-slider-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            position: relative;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            user-select: none;
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            height: 35px;
+        }
+
+        .slider-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 11px;
+            color: #555;
+            position: absolute;
+            transform: translateX(-50%);
+            transition: color 0.2s;
+        }
+
+        .slider-label.active {
+            color: #004085;
+            font-weight: bold;
+        }
+
+        .slider-track {
+            height: 12px;
+            background: #eee;
+            border-radius: 6px;
+            position: relative;
+            cursor: pointer;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider-segment {
+            height: 100%;
+            position: absolute;
+            border-radius: 6px;
+            opacity: 0.7;
+        }
+
+        .segment-0 {
+            background-color: #e3f2fd;
+        }
+
+        .segment-1 {
+            background-color: #bbdefb;
+        }
+
+        .segment-2 {
+            background-color: #90caf9;
+        }
+
+        .segment-3 {
+            background-color: #64b5f6;
+        }
+
+        .segment-4 {
+            background-color: #42a5f5;
+        }
+
+        .segment-5 {
+            background-color: #2196f3;
+        }
+
+        .segment-6 {
+            background-color: #1e88e5;
+        }
+
+        .slider-handle {
+            width: 18px;
+            height: 18px;
+            background: #fff;
+            border: 2px solid #004085;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: ew-resize;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .slider-handle:hover {
+            transform: translate(-50%, -50%) scale(1.15);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider-handle.active {
+            background: #004085;
+            box-shadow: 0 0 0 4px rgba(0, 64, 133, 0.2);
+        }
+
         @media print {
 
             .btn-container,
@@ -289,26 +483,53 @@
     <button class="btn print-btn" onclick="preparePrint()">列印估價單</button>
 
     <div class="settings-panel">
-        <div class="settings-title">顯示欄位設定</div>
-        <div class="toggles-container">
-            <label class="toggle-switch">
-                <input type="checkbox" id="checkCompany" checked onchange="toggleField('groupCompany')">
-                <span class="slider"></span>
-                <span class="label-text">單位</span>
-            </label>
-            <span class="separator">|</span>
-            <label class="toggle-switch">
-                <input type="checkbox" id="checkTax" checked onchange="toggleField('groupTax')">
-                <span class="slider"></span>
-                <span class="label-text">統編</span>
-            </label>
-            <span class="separator">|</span>
-            <label class="toggle-switch">
-                <input type="checkbox" id="checkProject" checked onchange="toggleField('groupProject')">
-                <span class="slider"></span>
-                <span class="label-text">工程名稱</span>
-            </label>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+                <div class="settings-title" style="margin-right: 0;">表頭資訊：</div>
+                <div class="toggles-container">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="checkCompany" checked onchange="toggleField('groupCompany')">
+                        <span class="slider"></span>
+                        <span class="label-text">單位</span>
+                    </label>
+                    <span class="separator">|</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="checkTax" checked onchange="toggleField('groupTax')">
+                        <span class="slider"></span>
+                        <span class="label-text">統編</span>
+                    </label>
+                    <span class="separator">|</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="checkProject" checked onchange="toggleField('groupProject')">
+                        <span class="slider"></span>
+                        <span class="label-text">工程名稱</span>
+                    </label>
+                </div>
+            </div>
+            <div
+                style="display: flex; flex-direction: column; align-items: center; gap: 5px; padding-top: 10px; border-top: 1px dashed #ddd;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="settings-title" style="margin-right: 0; margin-bottom: 0;">欄寬分配</div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" onchange="toggleSlider(this.checked)">
+                        <span class="slider"></span>
+                        <span class="label-text">顯示調整</span>
+                    </label>
+                    <button class="btn-mini btn-mini-reset" onclick="resetWidths()">重置比例</button>
+                </div>
+
+                <div class="multi-slider-container" id="multiSlider" style="display: none;">
+                    <div class="slider-labels" id="sliderLabels">
+                        <!-- Labels injected via JS -->
+                    </div>
+                    <div class="slider-track" id="sliderTrack">
+                        <!-- Segments and handles injected via JS -->
+                    </div>
+                </div>
+
+            </div>
         </div>
+    </div>
     </div>
 
     <div class="container">
@@ -330,17 +551,17 @@
             </div>
         </div>
 
-        <div class="table-container">
+        <div class="table-container" id="tableContainer">
             <table id="quotationTable">
                 <thead>
                     <tr>
-                        <th width="8%">項目</th>
-                        <th width="36%">品名</th>
-                        <th width="8%">數量</th>
-                        <th width="8%">單位</th>
-                        <th width="16%">單價</th>
-                        <th width="16%">金額</th>
-                        <th width="8%">備註</th>
+                        <th width="8%" class="col-item">項目</th>
+                        <th width="36%" class="col-name">品名</th>
+                        <th width="8%" class="col-qty">數量</th>
+                        <th width="8%" class="col-unit">單位</th>
+                        <th width="16%" class="col-price">單價</th>
+                        <th width="16%" class="col-amount">金額</th>
+                        <th width="8%" class="col-note">備註</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -348,17 +569,21 @@
                 </tbody>
                 <tfoot>
                     <tr class="total-row">
-                        <td colspan="5" style="text-align: right; font-weight: bold;">總計</td>
-                        <td id="totalAmount">0</td>
-                        <td></td>
+                        <td colspan="5" style="text-align: right; font-weight: bold;" id="totalLabelCell">總計</td>
+                        <td id="totalAmount" class="col-amount">0</td>
+                        <td class="col-note"></td>
                     </tr>
                 </tfoot>
             </table>
         </div>
 
         <div class="btn-container">
-            <button class="btn btn-success" onclick="addRow()">新增項目</button>
-            <button class="btn btn-danger" onclick="removeLastRow()">刪除項目</button>
+            <button class="btn btn-success" onclick="addRow()">
+                <span>+</span> 新增項目
+            </button>
+            <button class="btn btn-danger" onclick="removeLastRow()">
+                <span>-</span> 刪除項目
+            </button>
         </div>
 
         <div class="company-info">
@@ -390,13 +615,13 @@
             const newRow = tbody.insertRow();
 
             newRow.innerHTML = `
-                <td>${rowCount}</td>
-                <td><input type="text" class="item-input" placeholder="品項名稱"></td>
-                <td><input type="number" class="item-input quantity" min="0" step="1" placeholder="0" onchange="calculateAmount(this)"></td>
-                <td><input type="text" class="item-input" placeholder="單位"></td>
-                <td><input type="number" class="item-input price" min="0" step="1" placeholder="0" onchange="calculateAmount(this)"></td>
-                <td class="amount">0</td>
-                <td><input type="text" class="item-input"></td>
+                <td class="col-item">${rowCount}</td>
+                <td class="col-name"><input type="text" class="item-input" placeholder="品項名稱"></td>
+                <td class="col-qty"><input type="number" class="item-input quantity" min="0" step="1" placeholder="0" onchange="calculateAmount(this)"></td>
+                <td class="col-unit"><input type="text" class="item-input" placeholder="單位"></td>
+                <td class="col-price"><input type="number" class="item-input price" min="0" step="1" placeholder="0" onchange="calculateAmount(this)"></td>
+                <td class="amount col-amount">0</td>
+                <td class="col-note"><input type="text" class="item-input"></td>
             `;
         }
 
@@ -457,6 +682,147 @@
             }
         }
 
+        function toggleSlider(isVisible) {
+            const slider = document.getElementById('multiSlider');
+            if (slider) {
+                slider.style.display = isVisible ? 'flex' : 'none';
+            }
+        }
+
+        const defaultWidths = [8, 36, 8, 8, 16, 16, 8];
+
+        function resetWidths() {
+            let currentPos = 0;
+            handles = [];
+            for (let i = 0; i < defaultWidths.length - 1; i++) {
+                currentPos += defaultWidths[i];
+                handles.push(currentPos);
+            }
+            renderSlider();
+        }
+
+        // --- Multi-Slider Logic ---
+        const columns = [
+            { id: 'col-item', name: '項目', width: 8 },
+            { id: 'col-name', name: '品名', width: 36 },
+            { id: 'col-qty', name: '數量', width: 8 },
+            { id: 'col-unit', name: '單位', width: 8 },
+            { id: 'col-price', name: '單價', width: 16 },
+            { id: 'col-amount', name: '金額', width: 16 },
+            { id: 'col-note', name: '備註', width: 8 }
+        ];
+
+        let handles = []; // Positions in percentage (0 to 100)
+        let activeHandleIndex = null;
+
+        function initSlider() {
+            const track = document.getElementById('sliderTrack');
+            const labelsContainer = document.getElementById('sliderLabels');
+
+            // Calculate initial handle positions
+            let currentPos = 0;
+            handles = [];
+            for (let i = 0; i < columns.length - 1; i++) {
+                currentPos += columns[i].width;
+                handles.push(currentPos);
+            }
+
+            renderSlider();
+
+            // Mouse/Touch events
+            window.addEventListener('mousemove', handleDragging);
+            window.addEventListener('mouseup', stopDragging);
+            window.addEventListener('touchmove', handleDragging, { passive: false });
+            window.addEventListener('touchend', stopDragging);
+        }
+
+        function renderSlider() {
+            const track = document.getElementById('sliderTrack');
+            const labelsContainer = document.getElementById('sliderLabels');
+            track.innerHTML = '';
+            labelsContainer.innerHTML = '';
+
+            // Render segments
+            let prevPos = 0;
+            columns.forEach((col, i) => {
+                const nextPos = i < handles.length ? handles[i] : 100;
+                const width = nextPos - prevPos;
+
+                const segment = document.createElement('div');
+                segment.className = `slider-segment segment-${i}`;
+                segment.style.left = prevPos + '%';
+                segment.style.width = width + '%';
+                track.appendChild(segment);
+
+                const label = document.createElement('div');
+                label.className = 'slider-label';
+                label.innerHTML = `<span>${col.name}</span><span>${Math.round(width)}%</span>`;
+                label.style.left = (prevPos + width / 2) + '%';
+                labelsContainer.appendChild(label);
+
+                prevPos = nextPos;
+            });
+
+            // Render handles
+            handles.forEach((pos, i) => {
+                const handle = document.createElement('div');
+                handle.className = 'slider-handle' + (activeHandleIndex === i ? ' active' : '');
+                handle.style.left = pos + '%';
+                handle.onmousedown = (e) => startDragging(e, i);
+                handle.ontouchstart = (e) => startDragging(e, i);
+                track.appendChild(handle);
+            });
+
+            updateTableWidths();
+        }
+
+        function startDragging(e, index) {
+            e.preventDefault();
+            activeHandleIndex = index;
+            renderSlider();
+        }
+
+        function handleDragging(e) {
+            if (activeHandleIndex === null) return;
+            if (e.type === 'touchmove') e.preventDefault();
+
+            const track = document.getElementById('sliderTrack');
+            const rect = track.getBoundingClientRect();
+            const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+
+            let pos = ((clientX - rect.left) / rect.width) * 100;
+
+            // Constraints
+            const minPadding = 3; // Minimum column width %
+            const min = activeHandleIndex === 0 ? minPadding : handles[activeHandleIndex - 1] + minPadding;
+            const max = activeHandleIndex === handles.length - 1 ? 100 - minPadding : handles[activeHandleIndex + 1] - minPadding;
+
+            pos = Math.max(min, Math.min(max, pos));
+            handles[activeHandleIndex] = pos;
+
+            renderSlider();
+        }
+
+        function stopDragging() {
+            if (activeHandleIndex !== null) {
+                activeHandleIndex = null;
+                renderSlider();
+            }
+        }
+
+        function updateTableWidths() {
+            let prevPos = 0;
+            columns.forEach((col, i) => {
+                const nextPos = i < handles.length ? handles[i] : 100;
+                const width = nextPos - prevPos;
+
+                const th = document.querySelector(`th.${col.id}`);
+                if (th) th.width = width.toFixed(1) + '%';
+
+                prevPos = nextPos;
+            });
+        }
+
         function preparePrint() {
             const company = document.getElementById('companyName').value || '未命名單位';
             const today = new Date();
@@ -482,6 +848,9 @@
 
             // 添加第一行
             addRow();
+
+            // 初始化多點滑桿
+            initSlider();
         });
     </script>
 </body>
